@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crop Recommendation System</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Authentication Container -->
+    <div id="auth-container" class="auth-container">
+      <div class="auth-card">
+        <h1>Crop Recommendation System</h1>
+        <p class="subtitle">Smart Agriculture with AI</p>
+
+        <!-- Sign In Form -->
+        <div id="signin-form" class="auth-form">
+          <h2>Sign In</h2>
+          <form id="login-form">
+            <div class="form-group">
+              <label for="signin-email">Email</label>
+              <input
+                type="email"
+                id="signin-email"
+                required
+                placeholder="Enter your email"
+              />
+            </div>
+            <div class="form-group">
+              <label for="signin-password">Password</label>
+              <input
+                type="password"
+                id="signin-password"
+                required
+                placeholder="Enter your password"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+            <div class="auth-links">
+              <a href="#" id="show-signup">Don't have an account? Sign Up</a>
+              <a href="#" id="show-forgot">Forgot Password?</a>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="signup-form" class="auth-form" style="display: none">
+          <h2>Sign Up</h2>
+          <form id="register-form">
+            <div class="form-group">
+              <label for="signup-name">Full Name</label>
+              <input
+                type="text"
+                id="signup-name"
+                required
+                placeholder="Enter your full name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="signup-email">Email</label>
+              <input
+                type="email"
+                id="signup-email"
+                required
+                placeholder="Enter your email"
+              />
+            </div>
+            <div class="form-group">
+              <label for="signup-password">Password</label>
+              <input
+                type="password"
+                id="signup-password"
+                required
+                placeholder="Minimum 8 characters"
+              />
+              <small
+                >Must contain uppercase, lowercase, number, and special
+                character</small
+              >
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <div class="auth-links">
+              <a href="#" id="show-signin">Already have an account? Sign In</a>
+            </div>
+          </form>
+        </div>
+
+        <!-- Verification Form -->
+        <div id="verify-form" class="auth-form" style="display: none">
+          <h2>Verify Email</h2>
+          <p>Please enter the verification code sent to your email.</p>
+          <form id="verification-form">
+            <div class="form-group">
+              <label for="verify-code">Verification Code</label>
+              <input
+                type="text"
+                id="verify-code"
+                required
+                placeholder="Enter 6-digit code"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Verify</button>
+            <div class="auth-links">
+              <a href="#" id="resend-code">Resend Code</a>
+            </div>
+          </form>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div id="forgot-form" class="auth-form" style="display: none">
+          <h2>Reset Password</h2>
+          <form id="forgot-password-form">
+            <div class="form-group">
+              <label for="forgot-email">Email</label>
+              <input
+                type="email"
+                id="forgot-email"
+                required
+                placeholder="Enter your email"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Send Reset Code
+            </button>
+            <div class="auth-links">
+              <a href="#" id="back-to-signin">Back to Sign In</a>
+            </div>
+          </form>
+        </div>
+
+        <!-- Reset Password Form -->
+        <div id="reset-form" class="auth-form" style="display: none">
+          <h2>New Password</h2>
+          <form id="reset-password-form">
+            <div class="form-group">
+              <label for="reset-code">Verification Code</label>
+              <input
+                type="text"
+                id="reset-code"
+                required
+                placeholder="Enter code from email"
+              />
+            </div>
+            <div class="form-group">
+              <label for="new-password">New Password</label>
+              <input
+                type="password"
+                id="new-password"
+                required
+                placeholder="Enter new password"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Reset Password
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Application Container -->
+    <div id="app-container" class="app-container" style="display: none">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <h1>Crop Recommendation System</h1>
+          <div class="user-info">
+            <span id="user-email"></span>
+            <button id="logout-btn" class="btn btn-secondary">Logout</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="container">
+          <div class="intro-section">
+            <h2>Find the Best Crop for Your Soil</h2>
+            <p>
+              Enter your soil and environmental parameters to get AI-powered
+              crop recommendations.
+            </p>
+          </div>
+
+          <!-- Input Form -->
+          <div class="prediction-card">
+            <h3>Soil & Environment Parameters</h3>
+            <form id="prediction-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="nitrogen">Nitrogen (N) - kg/ha</label>
+                  <input
+                    type="number"
+                    id="nitrogen"
+                    step="0.01"
+                    required
+                    placeholder="e.g., 90"
+                  />
+                  <small>Nitrogen content ratio in soil</small>
+                </div>
+                <div class="form-group">
+                  <label for="phosphorus">Phosphorus (P) - kg/ha</label>
+                  <input
+                    type="number"
+                    id="phosphorus"
+                    step="0.01"
+                    required
+                    placeholder="e.g., 42"
+                  />
+                  <small>Phosphorus content ratio in soil</small>
+                </div>
+                <div class="form-group">
+                  <label for="potassium">Potassium (K) - kg/ha</label>
+                  <input
+                    type="number"
+                    id="potassium"
+                    step="0.01"
+                    required
+                    placeholder="e.g., 43"
+                  />
+                  <small>Potassium content ratio in soil</small>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="temperature">Temperature - °C</label>
+                  <input
+                    type="number"
+                    id="temperature"
+                    step="0.01"
+                    required
+                    placeholder="e.g., 20.87"
+                  />
+                  <small>Average temperature in Celsius</small>
+                </div>
+                <div class="form-group">
+                  <label for="humidity">Humidity - %</label>
+                  <input
+                    type="number"
+                    id="humidity"
+                    step="0.01"
+                    required
+                    placeholder="e.g., 82"
+                  />
+                  <small>Relative humidity in percentage</small>
+                </div>
+                <div class="form-group">
+                  <label for="ph">pH Value</label>
+                  <input
+                    type="number"
+                    id="ph"
+                    step="0.01"
+                    required
+                    placeholder="e.g., 6.5"
+                  />
+                  <small>pH value of the soil (0-14)</small>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="rainfall">Rainfall - mm</label>
+                  <input
+                    type="number"
+                    id="rainfall"
+                    step="0.01"
+                    required
+                    placeholder="e.g., 202.93"
+                  />
+                  <small>Rainfall in millimeters</small>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-large">
+                Get Recommendation
+              </button>
+            </form>
+          </div>
+
+          <!-- Result Section -->
+          <div id="result-section" class="result-section" style="display: none">
+            <div class="result-card">
+              <h3>Recommended Crop</h3>
+              <div class="crop-result">
+                <div class="crop-icon">🌾</div>
+                <div class="crop-name" id="crop-name"></div>
+              </div>
+              <p class="result-message">
+                Based on your soil and environmental parameters, this crop is
+                most suitable for cultivation.
+              </p>
+            </div>
+          </div>
+
+          <!-- Loading Indicator -->
+          <div id="loading" class="loading" style="display: none">
+            <div class="spinner"></div>
+            <p>Analyzing your data...</p>
+          </div>
+
+          <!-- Error Message -->
+          <div
+            id="error-message"
+            class="error-message"
+            style="display: none"
+          ></div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>
+          &copy; 2025 Crop Recommendation System. Powered by AI & AWS Cognito.
+        </p>
+      </footer>
+    </div>
+
+    <!-- AWS Cognito SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js@6.3.6/dist/amazon-cognito-identity.min.js"></script>
+
+    <!-- Configuration -->
+    <script src="config.js"></script>
+
+    <!-- Main Application Script -->
+    <script src="app.js"></script>
+  </body>
+</html>
